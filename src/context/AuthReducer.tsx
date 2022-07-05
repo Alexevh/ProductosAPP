@@ -47,7 +47,7 @@ export const authReducer = (
     case 'logOut':
       return {
         ...state,
-        errorMessage: 'Not Authenticated',
+        errorMessage: '',
         status: 'not-authenticated',
         token: null,
         user: null,

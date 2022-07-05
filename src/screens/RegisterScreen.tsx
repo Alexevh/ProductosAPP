@@ -1,16 +1,18 @@
 import { StackScreenProps } from '@react-navigation/stack';
-import React from 'react';
-import { Text, View, TextInput, Platform, TouchableOpacity, KeyboardAvoidingView, Keyboard } from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { Text, View, TextInput, Platform, TouchableOpacity, KeyboardAvoidingView, Keyboard, Alert } from 'react-native';
 import { Background } from '../components/Background';
 import { WhiteLogo } from '../components/WhiteLogo';
 import { useForm } from '../hooks/useForm';
 import { loginStyles } from '../Theme/LoginTheme';
+import {AuthContext} from '../context/AuthContext'
 interface Props extends StackScreenProps<any, any>{}
 
 
 export const RegisterScreen = ({navigation}: Props)=>{
 
 
+  const { signUp, errorMessage, removeError} = useContext(AuthContext);
   
 
 /* Como este componente esta dentro del stacknaigator tengo en las props el navigator */
@@ -25,9 +27,29 @@ export const RegisterScreen = ({navigation}: Props)=>{
     const onRegister = ()=>{
         console.log('data', email);
         Keyboard.dismiss();
+        signUp({
+            nombre: name,
+            password,
+            correo: email
+        });
        
     }
 
+    useEffect(() => {
+        if (errorMessage.length === 0) return;
+    
+        //alert(errorMessage);
+        //removeError();
+        
+        
+          Alert.alert('Error', errorMessage, [
+          {
+            text: 'OK',
+            onPress:removeError,
+          },
+        ]);
+        
+      }, [errorMessage]);
 
     return (
         <>

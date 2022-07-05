@@ -7,7 +7,7 @@ import { MainNavigator } from './src/navigators/Navigator';
 
 
 
-
+// Creo este high order coponent para meter aca los states, o sea los contexts
 const AppState = ({ children }: any ) => {
   return (
     <AuthProvider>

@@ -5,6 +5,9 @@ export interface LoginResponse {
     token:   string;
 }
 
+
+
+
 export interface Usuario {
     rol:    string;
     estado: boolean;
@@ -15,8 +18,15 @@ export interface Usuario {
     img?: string;
 }
 
-
+// solo para el login, para mandar el obeto al endpoint
 export interface LoginData {
     correo: string;
     password: string;
 }
+
+export interface RegisterData {
+    correo: string;
+    password: string;
+    nombre: string;
+}
+
